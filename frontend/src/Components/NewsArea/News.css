@@ -1,0 +1,36 @@
+.News {
+
+  justify-items: center;
+  justify-content: space-around;
+  margin:25px;
+}
+button {
+    margin-left: 10px;
+  }
+  
+img {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  object-fit: cover;
+  margin: 10px;
+  width:30%;
+  height:150px;
+  }
+  img:hover {
+    border: 1px solid #777;
+  }
+
+  .Box {
+    display: inline-block;
+    text-align: center;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px;
+    width: 70%;
+    background: white;
+  }
+
+

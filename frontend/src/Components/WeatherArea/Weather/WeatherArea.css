@@ -1,0 +1,19 @@
+.WeatherArea {
+	margin:30px;
+}
+img {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    object-fit: cover;
+    margin: 10px;
+    width:100px;
+    height:100px;
+    }
+    img:hover {
+      border: 1px solid #777;
+    }
+
+    table{
+      width: 300px;
+    }
