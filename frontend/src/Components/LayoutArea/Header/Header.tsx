@@ -5,7 +5,7 @@ function Header(): JSX.Element {
 
     return (
         <div className="Header">
-            <h1>news online {currentDate}</h1>
+            <h1>News Online {currentDate}</h1>
            
         </div>
     );

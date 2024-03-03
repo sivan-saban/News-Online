@@ -10,14 +10,24 @@ class NewsService {
       return response.data;
     }
 
-    public async getCategories(): Promise<any> {
-
-      const response = await axios.get<any[]>(`https://newsapi.org/v2/top-headlines?category=il&apiKey=aa8e2f88a7ad4ba390fabd7635a5bee8`);
-      
-      return response.data;
-
+    public async getNewsByCategories(category:string): Promise<any> {
+  
+      const body =
+      {
+        "category" : category
+      }
+  
+      try{
+      const response = await axios.post<string>(appConfig.newsBycategoryUrl , body);
+        return response.data;
+      }catch (error) {
+        console.log('Error fetching weather data:', error);
+      }
     }
-  }
+
+    
+    }
+  
 const newsService = new NewsService();
 
 export default newsService;
