@@ -5,7 +5,10 @@
     "scripts": {
         "start-backend": "npm -C ./frontend start",
         "start-frontend": "npm -C ./backend start",
-        "start": "npm-run-all -p start-backend start-frontend"
+        "start": "npm-run-all -p start-backend start-frontend",
+        
+    "build": "react-scripts build"
+
     },
     "dependencies": {
         "dotenv": "^16.4.5",
