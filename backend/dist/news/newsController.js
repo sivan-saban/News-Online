@@ -14,11 +14,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const axios_1 = __importDefault(require("axios"));
+const redis = require("redis");
+const client = redis.createClient();
 const router = (0, express_1.Router)();
 router.route("/").get((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const responseFromNewsApi = (yield axios_1.default.get(`https://newsapi.org/v2/top-headlines?country=il&apiKey=aa8e2f88a7ad4ba390fabd7635a5bee8
         `)).data;
+        client.set("key", "value", (err, reply) => {
+            console.log(reply); // OK
+            client.get("key", (err, reply) => {
+                console.log(reply); // value
+            });
+        });
         return res.json(responseFromNewsApi);
     }
     catch (e) {
