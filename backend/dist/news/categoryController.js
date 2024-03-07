@@ -14,14 +14,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const axios_1 = __importDefault(require("axios"));
+require('dotenv').config();
 const router = (0, express_1.Router)();
+const apiKey = process.env.NEWS_API_KEY;
 router.route("/").post((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { category } = req.body;
         if (!category) {
             return res.status(400).send("Required parameters are missing");
         }
-        const response = (yield axios_1.default.get(`https://newsapi.org/v2/top-headlines?country=il&category=${category}&apiKey=aa8e2f88a7ad4ba390fabd7635a5bee8`)).data;
+        const response = (yield axios_1.default.get(`https://newsapi.org/v2/top-headlines?country=il&category=${category}&apiKey=${apiKey}`)).data;
         return res.json(response);
     }
     catch (e) {
