@@ -1,10 +1,10 @@
-import 'dotenv/config';
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import newsController from "./news/newsController";
 import weatherController from './weahter/weatherController';
 import categoryController from './news/categoryController';
+
 const newsServer = express();
 
 newsServer.use(express.json());

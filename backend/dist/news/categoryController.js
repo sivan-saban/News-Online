@@ -14,20 +14,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const axios_1 = __importDefault(require("axios"));
-require('dotenv').config();
+const dotenv_1 = require("dotenv");
+const node_cache_1 = __importDefault(require("node-cache"));
 const router = (0, express_1.Router)();
+(0, dotenv_1.config)();
 const apiKey = process.env.NEWS_API_KEY;
+const cache = new node_cache_1.default();
 router.route("/").post((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const { category } = req.body;
-        if (!category) {
-            return res.status(400).send("Required parameters are missing");
-        }
-        const response = (yield axios_1.default.get(`https://newsapi.org/v2/top-headlines?country=il&category=${category}&apiKey=${apiKey}`)).data;
-        return res.json(response);
+    const { category } = req.body;
+    if (!category) {
+        return res.status(400).send("Required parameters are missing");
     }
-    catch (e) {
-        return res.status(500).send(e);
+    const cacheKey = `/news/${category}`; // Dynamic cache key based on the city
+    if (cache.has(cacheKey)) {
+        console.log("Getting weather from cache");
+        return res.json(cache.get(cacheKey));
+    }
+    else {
+        try {
+            const response = (yield axios_1.default.get(`https://newsapi.org/v2/top-headlines?country=il&category=${category}&apiKey=${apiKey}`)).data;
+            return res.json(response);
+        }
+        catch (e) {
+            return res.status(500).send(e);
+        }
     }
 }));
 exports.default = router;
